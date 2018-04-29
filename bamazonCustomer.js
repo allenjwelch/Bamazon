@@ -45,9 +45,30 @@ function custBuy() {
     }
   ]).then(custItem => {
     connection.query(`SELECT * FROM products WHERE item_id = ${custItem.itemId}`, function(err,res) {
+      if (res[0].stock_quantity > custItem.itemQuant) {
+        console.log('You\'re in luck, we have plenty in stock!'); 
+        let newQuant = res[0].stock_quantity - custItem.itemQuant; 
+        
+    // connection.end();
+
+
+    connection.query(`UPDATE products SET stock_quantiy = ${newQuant} WHERE item_id = ${custItem.itemId}`, function(err,res) {
       console.log(res); 
     }); // connection.query
-  }); // initial.prompt
-}; 
+    } else {
+      console.log('Insufficent quantiy!'); 
+    }
 
-// pool.end()
+    }); // connection.query
+
+    ///////////////////////////////////
+    // connection.query(`SELECT * FROM products `, function(err,res) {
+    //   console.log(res)
+    // }); // connection.query
+    // connection.end();  
+    //////////////////////////////////// 
+
+  }); // initial.prompt
+  
+  pool.end()
+}; 
