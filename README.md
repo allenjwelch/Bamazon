@@ -1,10 +1,10 @@
 # Bamazon
 
-!title[bamazonTitle.PNG]
+![title](bamazonTitle.PNG)
 
 ### Customer App
 
-!CustomerView[customerDisplay.gif]
+![CustomerView](customerDisplay.gif)
 
 - App displays all available items in Bamazon DataBase
 - Customer is then asked to select an item they wish to purchase
