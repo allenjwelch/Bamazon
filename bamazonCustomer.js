@@ -1,5 +1,6 @@
 const mysql = require('mysql'); 
 const initial = require('inquirer'); 
+const figlet = require('figlet');
 
 const pool = mysql.createPool({
   host: 'localhost',
@@ -17,6 +18,10 @@ const connection = mysql.createConnection({
   database: 'bamazon_db'
 }); 
 
+greatBayFig(); 
+setTimeout(showProducts, 1000); 
+
+function showProducts() {
 pool.getConnection(function(err, connection) {
   if (err) throw err; 
   console.log(`Connected to Bamazon as customer# ${connection.threadId}\n`); 
@@ -28,9 +33,9 @@ pool.getConnection(function(err, connection) {
     console.log('=======================================\n');
   }); //connection.query
   connection.release();   
-  setTimeout(custBuy, 2000); 
-}); // connection.connect
-
+  setTimeout(custBuy, 1000); 
+}); // pool.getConnection
+}; 
 
 function custBuy() {
   initial.prompt([
@@ -44,31 +49,50 @@ function custBuy() {
       name: 'itemQuant'
     }
   ]).then(custItem => {
-    connection.query(`SELECT * FROM products WHERE item_id = ${custItem.itemId}`, function(err,res) {
+      connection.query(`SELECT * FROM products WHERE item_id = ${custItem.itemId}`, function(err,res) {
       if (res[0].stock_quantity > custItem.itemQuant) {
         console.log('You\'re in luck, we have plenty in stock!'); 
         let newQuant = res[0].stock_quantity - custItem.itemQuant; 
+        let custPrice = custItem.itemQuant * res[0].price; 
+        let custProduct = res[0].product_name; 
         
-    // connection.end();
-
-
-    connection.query(`UPDATE products SET stock_quantiy = ${newQuant} WHERE item_id = ${custItem.itemId}`, function(err,res) {
-      console.log(res); 
+        connection.query(`UPDATE products SET stock_quantity = ${newQuant} WHERE item_id = ${custItem.itemId}`, function(err,res) {
+          console.log(`Your purchase of ${custItem.itemQuant} ${custProduct}s is $${custPrice}`); 
+          connection.end();   
+        }); // connection.query
+        } else {
+          console.log('Insufficent quantity!\n Please select again'); 
+          custBuy(); 
+        }
     }); // connection.query
-    } else {
-      console.log('Insufficent quantiy!'); 
-    }
-
-    }); // connection.query
-
-    ///////////////////////////////////
-    // connection.query(`SELECT * FROM products `, function(err,res) {
-    //   console.log(res)
-    // }); // connection.query
-    // connection.end();  
-    //////////////////////////////////// 
-
+    pool.end();
   }); // initial.prompt
   
-  pool.end()
-}; 
+  // pool.end()
+}; // custBuy
+
+
+function greatBayFig() {
+  figlet('$$$ Great Bay $$$', {
+    font: 'big',
+    horizontalLayout: 'default',
+    verticalLayout: 'default'
+  }, function(err, data) {
+    if (err) {
+      console.log('Something went wrong...');
+      console.dir(err);
+      return;
+    }
+    console.log(data)
+  });
+}
+
+
+
+
+
+
+
+
+
+

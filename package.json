@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/allenjwelch/Bamazon#readme",
   "dependencies": {
+    "figlet": "^1.2.0",
     "inquirer": "^5.2.0",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "npm": "^6.0.0"
   }
 }

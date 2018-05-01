@@ -24,4 +24,8 @@ VALUES
 ('Socks', 'Clothing', 5.99, 22), 
 ('Pants', 'Clothing', 18.50, 18); 
 
-SELECT * FROM bamazon_db.products
+SELECT * FROM bamazon_db.products;
+
+UPDATE products
+SET stock_quantity = 10
+WHERE item_id = 1;
