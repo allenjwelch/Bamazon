@@ -73,7 +73,7 @@ function custBuy() {
 
 
 function greatBayFig() {
-  figlet('$$$ Great Bay $$$', {
+  figlet('$$$ Bamazon $$$', {
     font: 'big',
     horizontalLayout: 'default',
     verticalLayout: 'default'
