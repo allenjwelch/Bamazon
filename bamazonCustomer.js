@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
   database: 'bamazon_db'
 }); 
 
-greatBayFig(); 
+bamazonFig(); 
 setTimeout(showProducts, 1000); 
 
 function showProducts() {
@@ -72,7 +72,7 @@ function custBuy() {
 }; // custBuy
 
 
-function greatBayFig() {
+function bamazonFig() {
   figlet('$$$ Bamazon $$$', {
     font: 'big',
     horizontalLayout: 'default',
