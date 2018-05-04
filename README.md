@@ -2,7 +2,7 @@
 
 ![title](bamazonTitle.PNG)
 
-### Customer App
+## Customer View
 
 ![CustomerView](customerDisplay.gif)
 
@@ -12,6 +12,7 @@
   _*If quantity desired exceeds what is in stock, customer will be asked to select again_
 - Once customer purchase is complete, the Bamazon DataBase is updated and purchase information is displayed
 
+## Manager View
 
 ![ManagerView](managerDisplay.gif)
 
@@ -22,3 +23,7 @@
 - If a manager selects `Add to Inventory`, the app displays a prompt that will let the manager "add more" of any item currently in the store.
 
 - If a manager selects `Add New Product`, the add allows manager to add a completely new product to the database.
+
+## Supervisor View
+
+__Coming Soon...__
