@@ -29,3 +29,7 @@ SELECT * FROM bamazon_db.products;
 UPDATE products
 SET stock_quantity = 10
 WHERE item_id = 1;
+
+INSERT INTO products (product_name, department_name, price, stock_quantity) 
+VALUES ('Cups', 'Household', 5, 5);
+

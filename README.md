@@ -15,8 +15,10 @@
 
 ![ManagerView](managerDisplay.gif)
 
-NEEDED: 
- - Add an 'Exit' menu item to initial prompt. 
- - Have all menu functions return back to initial prompt.
+- If a manager selects `View Products for Sale`, the app lists every available item: the item IDs, names, prices, and quantities.
 
- -- May have to use just connection instead of pool -- 
+- If a manager selects `View Low Inventory`, the app lists all items with an inventory count lower than five.
+
+- If a manager selects `Add to Inventory`, the app displays a prompt that will let the manager "add more" of any item currently in the store.
+
+- If a manager selects `Add New Product`, the add allows manager to add a completely new product to the database.
